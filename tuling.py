@@ -1,7 +1,6 @@
 #encoding=utf8
 import sys, os
 import requests, json
-import gflags
 from config import g_conf
 
 def get_response(msg, storageClass = None, userName = None, userid = 'ItChat'):
