@@ -27,19 +27,19 @@ def create_logger(logfilename, logName=""):
 
 logger = create_logger('./')
 
-#@itchat.msg_register('Text')
-#def text_reply(msg):
-#    logger.info('private receive msg=%s', json.dumps(msg, ensure_ascii=False, indent=4))
-#
-#    if g_conf.FILTER_USER_NAME != '' and g_conf.FILTER_USER_NAME != msg.user['NickName']:
-#        return
-#
-#    time.sleep(2)
-#    logger.info('private wechat from name=%s, msg=%s' % (msg.user['NickName'], msg.text))
-#    response = get_response(msg['Text']) or u'正在拯救世界，请稍等。。。'
-#    logger.info('private wechat to name=%s, msg=%s' % (msg.user['NickName'], response))
-#
-#    return response
+@itchat.msg_register('Text')
+def text_reply(msg):
+    logger.info('private receive msg=%s', json.dumps(msg, ensure_ascii=False, indent=4))
+
+    if g_conf.FILTER_USER_NAME != '' and g_conf.FILTER_USER_NAME != msg.user['NickName']:
+        return
+
+    time.sleep(2)
+    logger.info('private wechat from name=%s, msg=%s' % (msg.user['NickName'], msg.text))
+    response = get_response(msg['Text']) or u'正在拯救世界，请稍等。。。'
+    logger.info('private wechat to name=%s, msg=%s' % (msg.user['NickName'], response))
+
+    return response
 
 @itchat.msg_register('Text', isGroupChat = True)
 def group_reply(msg):
